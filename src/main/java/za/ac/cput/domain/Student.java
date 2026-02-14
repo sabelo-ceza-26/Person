@@ -1,13 +1,16 @@
 package za.ac.cput.domain;
 
-public class Student {
+public class Student extends Person{
     private String studentNumber;
     private int averageMark;
 
     public Student() {
     }
 
-    public Student(String studentNumber, int averageMark) {
+
+
+    public Student(String name, String phoneNumber, String email, String studentNumber, int averageMark) {
+        super(name, phoneNumber, email);
         this.studentNumber = studentNumber;
         this.averageMark = averageMark;
     }
