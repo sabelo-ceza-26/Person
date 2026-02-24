@@ -1,10 +1,12 @@
 package za.ac.cput.domain;
 
 public class Person {
-    private String name;
-    private String phoneNumber;
-    private String email;
+    //Just to be safe, make your attributes protected
+    protected String name;
+    protected String phoneNumber;
+    protected String email;
 
+    //Always make constructor private
     public Person() {
     }
 
@@ -14,6 +16,12 @@ public class Person {
         this.email = email;
 
     }
+
+    public Person(Builder builder){
+        this.name = builder.name;
+        this.phoneNumber = builder.phoneNumber;
+        this.email = builder.email;
+        }
 
     public String getName() {
         return name;
@@ -27,25 +35,45 @@ public class Person {
         return email;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     @Override
     public String toString() {
-        return "Person{" +
-                "name='" + name + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", email='" + email + '\'' +
-                '}';
+        return "Person: " +
+                "\nName: " + name +
+                "\nPhone Number: " + phoneNumber +
+                "\nEmail: " + email;
+    }
+    public static class Builder {
+        protected String name;
+        protected String phoneNumber;
+        protected String email;
+
+        public Builder setName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder setPhoneNumber(String phoneNumber) {
+            this.phoneNumber = phoneNumber;
+            return this;
+        }
+
+        public Builder setEmail(String email) {
+            this.email = email;
+            return this;
+        }
+
+        public Builder copy(Person person) {
+            this.name = person.name;
+            this.phoneNumber = person.phoneNumber;
+            this.email = person.email;
+            return this;
+
+        }
+
+        public Person build() {
+            return new Person(this);
+        }
+
     }
 }
 
